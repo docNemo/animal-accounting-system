@@ -8,10 +8,12 @@
   <packaging>jar</packaging>
 
   <name>animal-accounting-system</name>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/docNemo/animal-accounting-system/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
   <dependencies>
