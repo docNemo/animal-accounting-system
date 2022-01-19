@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class CreatorProperties {
+public abstract class CreatorListProperties {
     private final static byte INDEX_NAME = 1;
     private final static byte INDEX_PATH_TO_DESCRIPTOR = 2;
 

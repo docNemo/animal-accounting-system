@@ -1,7 +1,9 @@
 package jar;
 
+import java.util.ArrayList;
+
 public class Animal {
-    private String[] properties;
+    String[] properties;
 
     public Animal() {
     }
