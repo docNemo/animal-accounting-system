@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class App {
 
-    private final static String PATH_TO_DESCRIPTOR = "descriptors/descriptor1.txt";
-    private final static String PATH_TO_ANIMAL_FILE = "animals/animals1.csv";
-    private final static String PATH_TO_REQUEST_FILE = "requests/requests1.txt";
+    private final static String PATH_TO_DESCRIPTOR = "src/descriptors/descriptor.txt";
+    private final static String PATH_TO_ANIMAL_FILE = "src/animals/animals1.csv";
+    private final static String PATH_TO_REQUEST_FILE = "src/requests/requests1.txt";
 
     public static void main(String[] args) {
         ArrayList<Property> properties = CreatorListProperties.createProperties(PATH_TO_DESCRIPTOR);
@@ -27,7 +27,7 @@ public class App {
         for (int i = 0; i < resultCounting.length; i++) {
             StringBuilder str = new StringBuilder("");
             str.append(requests.get(i).getType())
-                    .append("с параметрами - ");
+                    .append(" с параметрами - ");
 
             for (Property property : requests.get(i).getNeededProperties()) {
                 str.append(property.getName()).append(property.getAvailableValues());
