@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class App {
 
     private final static String PATH_TO_DESCRIPTOR = "src/descriptors/descriptor.txt";
-    private final static String PATH_TO_ANIMAL_FILE = "src/animals/animals1.csv";
+    private final static String PATH_TO_ANIMAL_FILE = "src/animals/animals.1000000.csv";
     private final static String PATH_TO_REQUEST_FILE = "src/requests/requests1.txt";
 
     public static void main(String[] args) {
@@ -30,9 +30,9 @@ public class App {
                     .append(" с параметрами - ");
 
             for (Property property : requests.get(i).getNeededProperties()) {
-                str.append(property.getName()).append(property.getAvailableValues());
+                str.append(property.getName()).append(property.getAvailableValues()).append(" ");
             }
-            str.append(" = ").append(resultCounting[i]);
+            str.append("= ").append(resultCounting[i]);
             System.out.println(str);
         }
     }

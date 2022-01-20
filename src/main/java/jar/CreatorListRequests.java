@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class CreatorListRequests {
     private final static byte INDEX_TYPE_REQUEST = 0;
@@ -20,9 +21,12 @@ public class CreatorListRequests {
 
                 String[] blocksRequest = requestString.split("\\|");//First block is type request, others - properties
                 ArrayList<Property> requestProperties = null;
-                ArrayList<String> availableParameters = new ArrayList<String>();
+
+                requestProperties = new ArrayList<Property>();
                 for (int i = INDEX_BEGIN_PROPERTIES; i < blocksRequest.length; i++) {
-                    requestProperties = new ArrayList<Property>();
+
+                    ArrayList<String> availableParameters = new ArrayList<String>();
+
                     String[] blocksProperties = blocksRequest[i].split(":");//First block is name property, others - parameters of property
 
                     boolean isFirstModSetProperties = true;
@@ -31,10 +35,11 @@ public class CreatorListRequests {
                             availableParameters.add(parameter);
                         } else {
                             if (isFirstModSetProperties) {
-                                availableParameters = (ArrayList<String>) properties.clone();
+                                var allParameters = properties.stream().filter(property -> property.getName().equals(blocksProperties[INDEX_NAME_PROPERTY])).collect(Collectors.toList());
+                                availableParameters = allParameters.get(0).getAvailableValues();
                                 isFirstModSetProperties = false;
                             }
-                            availableParameters.remove(parameter);
+                            availableParameters.remove(parameter.replace("НЕ ", ""));
                         }
                     }
 
