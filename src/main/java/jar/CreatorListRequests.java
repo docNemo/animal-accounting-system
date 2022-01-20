@@ -31,7 +31,7 @@ public class CreatorListRequests {
 
                     boolean isFirstModSetProperties = true;
                     for (String parameter : blocksProperties[1].split(",")) {
-                        if (!parameter.startsWith("НЕ")) {
+                        if (!parameter.startsWith("НЕ ")) {
                             availableParameters.add(parameter);
                         } else {
                             if (isFirstModSetProperties) {
