@@ -3,7 +3,7 @@ package jar;
 import java.util.ArrayList;
 
 public class Animal {
-    String[] properties;
+    private String[] properties;
 
     public Animal() {
     }

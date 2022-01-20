@@ -14,10 +14,10 @@ public abstract class CreatorListProperties {
             String strParametersOfProperty;
             while (input.hasNextLine()) {
                 strParametersOfProperty = input.nextLine();
-                String[] parametersOfPropery = strParametersOfProperty.split("\\s");
-                Property property = new Property(parametersOfPropery[INDEX_NAME],
-                                                 parametersOfPropery[INDEX_PATH_TO_DESCRIPTOR],
-                                                 readAvailableValues(parametersOfPropery[INDEX_PATH_TO_DESCRIPTOR]));
+                String[] parametersOfProperty = strParametersOfProperty.split("\\s");
+                DescriptorProperty property = new DescriptorProperty(parametersOfProperty[INDEX_NAME],
+                                                                     parametersOfProperty[INDEX_PATH_TO_DESCRIPTOR],
+                                                                     readAvailableValues(parametersOfProperty[INDEX_PATH_TO_DESCRIPTOR]));
                 properties.add(property);
             }
         } catch (Exception ex) {

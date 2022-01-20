@@ -1,0 +1,3 @@
+ВЕС descriptors/weight-descriptor.txt
+РОСТ descriptors/height-descriptor.txt
+ТИП descriptors/type-descriptor.txt
