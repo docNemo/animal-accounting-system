@@ -1,3 +1,0 @@
-ВЕС src/descriptors/weight-descriptor.txt
-РОСТ src/descriptors/height-descriptor.txt
-ТИП src/descriptors/type-descriptor.txt

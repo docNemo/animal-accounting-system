@@ -1,29 +1,22 @@
 package jar;
 
-import java.io.File;
-import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CreatorListAnimals {
-    public static ArrayList<Animal> creatorListAnimals(String pathToAnimalsFile, ArrayList<Property> properties) {
-        ArrayList<Animal> animals = new ArrayList<Animal>();
-        try (Scanner input = new Scanner(new FileReader(new File(pathToAnimalsFile)))) {
+    public static ArrayList<String[]> creatorListAnimals(String pathToAnimalsFile) {
+        ArrayList<String[]> animals = new ArrayList<>();
+        try (BufferedReader reader =  new BufferedReader(new InputStreamReader(new FileInputStream(pathToAnimalsFile)))) {
             String animalProperties;
-            while (input.hasNextLine()) {
-                animalProperties = input.nextLine();
-                String[] arrAnimalProperties = animalProperties.split(",");
-                boolean isGoodAnimalStr = true;
-                for (int i = 0; i < arrAnimalProperties.length; i++) {
-                    isGoodAnimalStr &= properties.get(i).getAvailableValues().contains(arrAnimalProperties[i]);
-                }
-                if (isGoodAnimalStr) {
-                    animals.add(new Animal(arrAnimalProperties));
-                }
+            while (reader.ready()) {
+                animalProperties = reader.readLine();
+                String[] animal = animalProperties.split(",");
+                animals.add(animal);
             }
         } catch (Exception ex) {
-
-            System.out.println(ex.getMessage() + ex.getStackTrace());
+            System.err.println("Ошибка при считывании животного");
         }
         return animals;
     }

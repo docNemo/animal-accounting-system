@@ -7,32 +7,47 @@ import java.util.ArrayList;
  */
 public class App {
 
-    private final static String PATH_TO_DESCRIPTOR = "src/descriptors/descriptor.txt";
     private final static String PATH_TO_ANIMAL_FILE = "src/animals/animals.1000000.csv";
-    private final static String PATH_TO_REQUEST_FILE = "src/requests/requests1.txt";
+    private final static String PATH_TO_REQUEST_FILE = "src/rules/rules1.txt";
 
     public static void main(String[] args) {
-        ArrayList<Property> properties = CreatorListProperties.createProperties(PATH_TO_DESCRIPTOR);
+        long timeStart = System.nanoTime();
 
-        ArrayList<Animal> animals = CreatorListAnimals.creatorListAnimals(PATH_TO_ANIMAL_FILE, properties);
+        ArrayList<String[]> animals = CreatorListAnimals.creatorListAnimals(PATH_TO_ANIMAL_FILE);
 
-        ArrayList<Request> requests = CreatorListRequests.createListRequest(PATH_TO_REQUEST_FILE, properties);
+        ArrayList<Rule[]> rules = CreatorListRequests.createListRules(PATH_TO_REQUEST_FILE);
 
-        int[] resultCounting = Counter.count(requests, animals);
+        int[] resultCounting = Counter.count(rules, animals);
 
-        display(resultCounting, requests);
+        display(resultCounting, rules);
+
+        long timeFinish = System.nanoTime();
+
+        System.out.println("Время выполения " + ((timeFinish) - timeStart) / 1000 + " нс");
     }
 
-    private static void display(int[] resultCounting, ArrayList<Request> requests) {
+    private static void display(int[] resultCounting, ArrayList<Rule[]> rules) {
         for (int i = 0; i < resultCounting.length; i++) {
-            StringBuilder str = new StringBuilder("");
-            str.append(requests.get(i).getType())
-                    .append(" с параметрами - ");
+            Rule[] group = rules.get(i);
 
-            for (Property property : requests.get(i).getNeededProperties()) {
-                str.append(property.getName()).append(property.getAvailableValues()).append(" ");
+            StringBuilder str = new StringBuilder();
+
+            for (Rule rule : group) {
+                for (int indexWord = 0; indexWord < rule.getWords().length; indexWord++) {
+                    if (indexWord != 0) {
+                        str.append(",");
+                    }
+                    if (rule.isNeg()[indexWord]) {
+                        str.append("НЕ ");
+                    }
+                    str.append(rule.getWords()[indexWord]);
+                }
+                if (group.length > 1) {
+                    str.append("|");
+                }
             }
-            str.append("= ").append(resultCounting[i]);
+
+            str.append(" = ").append(resultCounting[i]);
             System.out.println(str);
         }
     }
