@@ -2,9 +2,6 @@ package jar;
 
 import java.util.ArrayList;
 
-/**
- *
- */
 public class App {
 
     private final static String PATH_TO_ANIMAL_FILE = "src/animals/animals.1000000.csv";

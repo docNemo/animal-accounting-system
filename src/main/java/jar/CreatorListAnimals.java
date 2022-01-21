@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CreatorListAnimals {
     public static ArrayList<String[]> creatorListAnimals(String pathToAnimalsFile) {
         ArrayList<String[]> animals = new ArrayList<>();
-        try (BufferedReader reader =  new BufferedReader(new InputStreamReader(new FileInputStream(pathToAnimalsFile)))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(pathToAnimalsFile)))) {
             String animalProperties;
             while (reader.ready()) {
                 animalProperties = reader.readLine();
@@ -20,6 +20,4 @@ public class CreatorListAnimals {
         }
         return animals;
     }
-
-
 }
