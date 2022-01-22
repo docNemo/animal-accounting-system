@@ -1,8 +1,8 @@
 package jar;
 
 public class Rule {
-    private boolean[] isNeg;
-    private String[] words;
+    private final boolean[] isNeg;
+    private final String[] words;
 
     public Rule(boolean[] isNeg, String[] words) {
         this.isNeg = isNeg;

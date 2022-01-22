@@ -2,12 +2,15 @@ package jar;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CreatorListRequests {
+    private final static String NEGATE = "НЕ ";
 
-    public static ArrayList<Rule[]> createListRules(String pathToFileRequest) {
+    public static List<Rule[]> createListRules(String pathToFileRequest) {
         ArrayList<Rule[]> rules = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(pathToFileRequest)))) {
             while (reader.ready()) {
@@ -20,17 +23,17 @@ public class CreatorListRequests {
 
                     boolean[] isNeg = new boolean[ruleStrings.length];
                     for (int indexRule = 0; indexRule < ruleStrings.length; indexRule++) {
-                        if (ruleStrings[indexRule].startsWith("НЕ ")) {
+                        if (ruleStrings[indexRule].startsWith(NEGATE)) {
                             isNeg[indexRule] = true;
-                            ruleStrings[indexRule] = ruleStrings[indexRule].replace("НЕ ", "");
+                            ruleStrings[indexRule] = ruleStrings[indexRule].replace(NEGATE, "");
                         }
                     }
                     readyGroupsRule[indexGroup] = new Rule(isNeg, ruleStrings);
                 }
                 rules.add(readyGroupsRule);
             }
-        } catch (Exception ex) {
-            System.err.println("Ошибка при считывании правила");
+        } catch (IOException ex) {
+            System.err.println("Ошибка при считывании правила: " + ex);
         }
         return rules;
     }

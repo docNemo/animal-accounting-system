@@ -1,9 +1,9 @@
 package jar;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Counter {
-    public static int[] count(ArrayList<Rule[]> rules, ArrayList<String[]> animals) {
+    public static int[] count(List<Rule[]> rules, List<String[]> animals) {
         int[] resultCounting = new int[rules.size()];
 
         for (String[] animal : animals) {
